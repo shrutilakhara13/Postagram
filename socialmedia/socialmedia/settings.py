@@ -133,9 +133,12 @@ STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media files (Cloudinary)
 # Media files
-if os.environ.get("CLOUDINARY_URL"):
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-    MEDIA_URL = '/media/'  # not actually used with Cloudinary, but safe to keep
-else:
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# Default file storage
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# Cloudinary configuration
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dhjljccaa',
+    'API_KEY': '837433559788311',
+    'API_SECRET': 'W86GVQ-84V_z6LAuZ-v5ixv7mdQ',
+}

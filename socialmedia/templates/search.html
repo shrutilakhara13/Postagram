@@ -1,0 +1,34 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="searchModalLabel">Search</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form id="searchForm" method="get" action="{% url 'search_results' %}">
+          {% csrf_token %}
+          <div class="input-group rounded">
+            <input
+              type="text"
+              name="q"
+              class="form-control rounded"
+              placeholder="Search users and posts"
+              aria-label="Search"
+              aria-describedby="button-search"
+              required
+            />
+            <!-- Button with search icon -->
+            <button class="btn btn-outline-secondary" type="submit" id="button-search" aria-label="Submit search">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

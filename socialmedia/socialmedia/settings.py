@@ -10,9 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
-import dj_database_url
+from dotenv import load_dotenv
 from pathlib import Path
-
+import cloudinary
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -86,6 +87,7 @@ DATABASES = {
 }
 database_url = os.environ.get("DATABASE_URL")
 if database_url:
+    import dj_database_url
     DATABASES["default"]= dj_database_url.parse(database_url)
 
 
@@ -137,8 +139,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Cloudinary configuration
+cloudinary.config( 
+  cloud_name = os.getenv("CLOUDINARY_CLOUD_NAME"),
+  api_key = os.getenv("CLOUDINARY_API_KEY"),
+  api_secret = os.getenv("CLOUDINARY_API_SECRET"),
+  secure = True
+)
+
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dhjljccaa',
-    'API_KEY': '837433559788311',
-    'API_SECRET': 'W86GVQ-84V_z6LAuZ-v5ixv7mdQ',
+    'CLOUD_NAME': os.getenv("CLOUDINARY_CLOUD_NAME"),
+    'API_KEY': os.getenv("CLOUDINARY_API_KEY"),
+    'API_SECRET': os.getenv("CLOUDINARY_API_SECRET"),
 }
+
